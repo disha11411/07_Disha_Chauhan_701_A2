@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cat Fact Fetcher</title>
+</head>
+<body>
+    <h1>Random Cat Fact 🐱</h1>
+    <button onclick="getCatFact()">Get Cat Fact</button>
+    <p id="fact"></p>
+
+    <script>
+        async function getCatFact() {
+            const res = await fetch('http://localhost:3000/api/catfact');
+            const data = await res.json();
+            document.getElementById('fact').innerText = data.fact;
+        }
+    </script>
+</body>
+</html>
