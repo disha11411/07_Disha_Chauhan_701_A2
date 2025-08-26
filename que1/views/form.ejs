@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Registration</title>
+</head>
+<body>
+  <h1>User Registration Form</h1>
+
+  <form action="/register" method="post" enctype="multipart/form-data">
+    <div>
+      <label>Username:</label><br/>
+      <input type="text" name="username" value="<%= old.username ? old.username : '' %>"/>
+      <span style="color:red"><%= errors.username ? errors.username.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Password:</label><br/>
+      <input type="password" name="password" />
+      <span style="color:red"><%= errors.password ? errors.password.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Confirm Password:</label><br/>
+      <input type="password" name="confirmPassword" />
+      <span style="color:red"><%= errors.confirmPassword ? errors.confirmPassword.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Email:</label><br/>
+      <input type="email" name="email" value="<%= old.email ? old.email : '' %>" />
+      <span style="color:red"><%= errors.email ? errors.email.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Gender:</label><br/>
+      <input type="radio" name="gender" value="Male" <%= old.gender === 'Male' ? 'checked' : '' %> /> Male
+      <input type="radio" name="gender" value="Female" <%= old.gender === 'Female' ? 'checked' : '' %> /> Female
+      <input type="radio" name="gender" value="Other" <%= old.gender === 'Other' ? 'checked' : '' %> /> Other
+      <br/>
+      <span style="color:red"><%= errors.gender ? errors.gender.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Hobbies:</label><br/>
+      <% 
+        const hobbiesList = ['Reading', 'Traveling', 'Cooking', 'Sports', 'Music'];
+        hobbiesList.forEach(hobby => {
+          let checked = false;
+          if (old.hobbies) {
+            if (Array.isArray(old.hobbies)) {
+              checked = old.hobbies.includes(hobby);
+            } else {
+              checked = old.hobbies === hobby;
+            }
+          }
+      %>
+        <input type="checkbox" name="hobbies" value="<%= hobby %>" <%= checked ? 'checked' : '' %> /> <%= hobby %>
+      <% }) %>
+      <br/>
+      <span style="color:red"><%= errors.hobbies ? errors.hobbies.msg : '' %></span>
+    </div>
+
+    <div>
+      <label>Upload Profile Picture (single):</label><br/>
+      <input type="file" name="profilePic" accept="image/*" />
+      <br/>
+      <span style="color:red"><%= fileErrors && fileErrors.profilePic ? fileErrors.profilePic : '' %></span>
+    </div>
+
+    <div>
+      <label>Upload Other Pictures (multiple):</label><br/>
+      <input type="file" name="otherPics" multiple accept="image/*" />
+      <br/>
+      <span style="color:red"><%= fileErrors && fileErrors.otherPics ? fileErrors.otherPics : '' %></span>
+    </div>
+
+    <br/>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
