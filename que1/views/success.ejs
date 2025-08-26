@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Successful</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 70%;
+    }
+    td, th {
+      border: 1px solid #aaa;
+      padding: 8px;
+    }
+    img {
+      max-width: 150px;
+      height: auto;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registration Successful!</h1>
+
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Username</td><td><%= userData.username %></td></tr>
+    <tr><td>Email</td><td><%= userData.email %></td></tr>
+    <tr><td>Gender</td><td><%= userData.gender %></td></tr>
+    <tr><td>Hobbies</td><td><%= userData.hobbies.join(', ') %></td></tr>
+    <tr>
+      <td>Profile Picture</td>
+      <td>
+        <img src="/uploads/<%= userData.profilePic %>" alt="Profile Picture" />
+      </td>
+    </tr>
+    <tr>
+      <td>Other Pictures</td>
+      <td>
+        <% if (userData.otherPics.length === 0) { %>
+          None
+        <% } else { %>
+          <% userData.otherPics.forEach(pic => { %>
+            <img src="/uploads/<%= pic %>" alt="Other Picture" />
+          <% }) %>
+        <% } %>
+      </td>
+    </tr>
+  </table>
+
+  <br/>
+  <a href="/download/<%= downloadFile %>">Download Submitted Data (JSON)</a>
+  <br/><br/>
+  <a href="/">Register Another User</a>
+</body>
+</html>
