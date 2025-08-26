@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Realtime Chatbot</title>
+<style>
+  body { font-family: Arial; margin: 20px; }
+  #messages { list-style: none; padding: 0; }
+  #messages li { padding: 5px 10px; }
+  #messages li.bot { color: blue; }
+  #messages li.user { color: green; }
+</style>
+</head>
+<body>
+<h2>Realtime Chatbot</h2>
+<ul id="messages"></ul>
+<form id="form" action="">
+  <input id="input" autocomplete="off" /><button>Send</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const form = document.getElementById('form');
+  const input = document.getElementById('input');
+  const messages = document.getElementById('messages');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      const msg = input.value;
+      appendMessage('You: ' + msg, 'user');
+      socket.emit('chat message', msg);
+      input.value = '';
+    }
+  });
+
+  socket.on('bot reply', function(reply) {
+    appendMessage('Bot: ' + reply, 'bot');
+  });
+
+  function appendMessage(text, cls) {
+    const item = document.createElement('li');
+    item.textContent = text;
+    item.classList.add(cls);
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+</script>
+</body>
+</html>
