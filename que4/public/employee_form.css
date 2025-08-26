@@ -1,0 +1,75 @@
+/* ========================
+   Global Styles
+======================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* ========================
+   Form Container
+======================== */
+form {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+}
+
+/* ========================
+   Heading
+======================== */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2d3436;
+  font-size: 24px;
+}
+
+/* ========================
+   Input Fields
+======================== */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* ========================
+   Button
+======================== */
+button {
+  width: 100%;
+  background-color: #0984e3;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #74b9ff;
+}
