@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= employee._id ? "Edit" : "Add" %> Employee</title>
+    <!-- <link rel="stylesheet" href="/employee_form.css" /> -->
+  </head>
+  <body>
+    <h2><%= employee._id ? "Edit" : "Add" %> Employee</h2>
+    <form method="POST" action="<%= action %>">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value="<%= employee.name || '' %>"
+        required
+      /><br />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value="<%= employee.email || '' %>"
+        required
+      /><br />
+      <input
+        type="number"
+        name="basic"
+        placeholder="Basic"
+        value="<%= employee.basic || '' %>"
+        required
+      /><br />
+      <input
+        type="number"
+        name="hra"
+        placeholder="HRA"
+        value="<%= employee.hra || '' %>"
+        required
+      /><br />
+      <input
+        type="number"
+        name="da"
+        placeholder="DA"
+        value="<%= employee.da || '' %>"
+        required
+      /><br />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
